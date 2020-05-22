@@ -20,19 +20,27 @@ public class Matrix {
 	}
 	
 	public static void main(String[] args) {
-		Matrix matrix = new Matrix(5,2);		// Dane testowe
+		Matrix matrix = new Matrix(6,3);		// Dane testowe
 		
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 2; j++) {
-				matrix.board[i][j] = new Cell(2);
-			}
-		}
+		initializeMatrix(matrix);
 		
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 2; j++) {
+		printMatrix(matrix);
+	}
+	
+	public static void printMatrix(Matrix matrix) {
+		for(int i = 0; i < matrix.rows; i++) {
+			for(int j = 0; j < matrix.collumns; j++) {
 				System.out.print(matrix.board[i][j].state + " ");
 			}
 			System.out.println();
+		}
+	}
+	
+	public static void initializeMatrix(Matrix matrix) {
+		for(int i = 0; i < matrix.rows; i++) {
+			for(int j = 0; j < matrix.collumns; j++) {
+				matrix.board[i][j] = new Cell(2);
+			}
 		}
 	}
 }
