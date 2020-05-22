@@ -8,6 +8,11 @@ public class Cell {
 		this.state = stan;
 		headCounter = 0;
 	}
+	
+	public Cell() {
+		this.state = 0;
+		headCounter = 0;
+	}
 
 	
 	public static void zmienStan(Cell komorka) {
