@@ -22,17 +22,17 @@ public class Matrix {
 
 	public static void main(String[] args) {
 		Matrix matrix = new Matrix(5, 4, 2);
-
 		initializeMatrix(matrix);
+		matrix.board[4][3][1].state = 1; // sprawdzenie, czy faktycznie wyœwietla 2 ró¿ne iteracje
 		printMatrix(matrix);
 	}
 
 	public static void printMatrix(Matrix matrix) {
 		for (int n = 0; n < matrix.iteration; n++) {
-			System.out.println((n+1) + ". Iteracja:");
+			System.out.println((n + 1) + ". Iteracja:");
 			for (int i = 0; i < matrix.rows; i++) {
 				for (int j = 0; j < matrix.collumns; j++) {
-					System.out.print(matrix.board[i][j][0].state + " ");
+					System.out.print(matrix.board[i][j][n].state + " ");
 				}
 				System.out.println();
 			}
