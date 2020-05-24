@@ -14,17 +14,4 @@ public class Cell {
 		headCounter = 0;
 	}
 
-	
-	public static void zmienStan(Cell komorka) {
-		if (komorka.state == 0)
-			komorka.state = 0;
-		else if (komorka.state == 1)
-			komorka.state = 2;
-		else if (komorka.state == 2)
-			komorka.state = 3;
-		else if (komorka.headCounter == 1 || komorka.headCounter == 2)
-			komorka.state = 1;
-		else
-			komorka.state = 3;
-	}
 }
