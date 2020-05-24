@@ -21,31 +21,107 @@ public class Matrix {
 	}
 
 	public static void main(String[] args) {
-		Matrix matrix = new Matrix(5, 4, 2);
+		Matrix matrix = new Matrix(2, 2, 5);
 		initializeMatrix(matrix);
-		matrix.board[4][3][1].state = 1; // sprawdzenie, czy faktycznie wyœwietla 2 ró¿ne iteracje
-		printMatrix(matrix);
+		for (int n = 0; n < matrix.iteration; n++) {
+			checkCell(matrix.rows, matrix.collumns, n, matrix);
+			printMatrix(n, matrix);
+			
+			changeMatrix(n, matrix);
+		}
+		
 	}
 
-	public static void printMatrix(Matrix matrix) {
-		for (int n = 0; n < matrix.iteration; n++) {
-			System.out.println((n + 1) + ". Iteracja:");
-			for (int i = 0; i < matrix.rows; i++) {
-				for (int j = 0; j < matrix.collumns; j++) {
-					System.out.print(matrix.board[i][j][n].state + " ");
-				}
-				System.out.println();
+	public static void printMatrix(int n, Matrix matrix) {
+
+		System.out.println((n + 1) + ". Iteracja:");
+		for (int i = 0; i < matrix.rows; i++) {
+			for (int j = 0; j < matrix.collumns; j++) {
+				System.out.print(matrix.board[i][j][n].state + " ");
 			}
+			System.out.println();
 		}
+
 	}
 
 	public static void initializeMatrix(Matrix matrix) {
 		for (int n = 0; n < matrix.iteration; n++) {
 			for (int i = 0; i < matrix.rows; i++) {
 				for (int j = 0; j < matrix.collumns; j++) {
-					matrix.board[i][j][n] = new Cell(2);
+					matrix.board[i][j][n] = new Cell(1);
 				}
 			}
 		}
 	}
+
+	public static void checkCell(int rows, int collumns, int n, Matrix matrix) {
+		for (int r = 0; r < rows; r++) {
+			for (int c = 0; c < collumns; c++) {
+				if (c - 1 >= 0) {
+					if (r - 1 >= 0) {
+						if (matrix.board[r - 1][c - 1][n].state == 1)
+							matrix.board[r][c][n].headCounter++;
+					}
+					if (matrix.board[r][c - 1][n].state == 1) {
+						matrix.board[r][c][n].headCounter++;
+					}
+					if (r + 1 < rows) {
+						if (matrix.board[r + 1][c - 1][n].state == 1) {
+							matrix.board[r][c][n].headCounter++;
+						}
+					}
+				}
+				if (r - 1 >= 0) {
+					if (matrix.board[r - 1][c][n].state == 1) {
+						matrix.board[r][c][n].headCounter++;
+					}
+				}
+				if (r + 1 < rows) {
+					if (matrix.board[r + 1][c][n].state == 1) {
+						matrix.board[r][c][n].headCounter++;
+					}
+				}
+				if (c + 1 < collumns) {
+					if (r - 1 >= 0) {
+						if (matrix.board[r - 1][c + 1][n].state == 1) {
+							matrix.board[r][c][n].headCounter++;
+						}
+					}
+
+					if (matrix.board[r][c + 1][n].state == 1) {
+						matrix.board[r][c][n].headCounter++;
+					}
+
+					if (r + 1 < rows) {
+						if (matrix.board[r + 1][c + 1][n].state == 1) {
+							matrix.board[r][c][n].headCounter++;
+						}
+					}
+				}
+			}
+		}
+
+	}
+
+	public static void changeMatrix(int n, Matrix matrix) {
+		for (int i = 0; i < matrix.rows; i++) {
+			for (int j = 0; j < matrix.collumns; j++) {
+				changeState(matrix.board[i][j][n], matrix.board[i][j][n+1]);
+			}
+		}
+	}
+
+	private static void changeState(Cell cell1, Cell cell2) {
+		if (cell1.state == 0)
+			cell2.state = 0;
+		else if (cell1.state == 1)
+			cell2.state = 2;
+		else if (cell1.state == 2) 
+			cell2.state = 3;
+		else if (cell1.headCounter == 1 || cell1.headCounter == 2)
+			cell2.state = 1;
+		else
+			cell2.state = 3;
+	}
+
 }
