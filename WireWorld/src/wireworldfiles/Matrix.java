@@ -22,7 +22,6 @@ public class Matrix {
 	}
 
 	public static void main(String[] args) {
-		LoadFile.loadFile();
 		Matrix matrix = new Matrix(5, 5, 5);
 		initializeMatrix(matrix);
 		for (int n = 0; n < matrix.iteration; n++) {

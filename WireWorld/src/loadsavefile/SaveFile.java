@@ -19,11 +19,11 @@ public class SaveFile {
 			for (int i = 0; i < matrix.rows; i++) {
 				for (int j = 0; j < matrix.collumns; j++) {
 					if (matrix.board[i][j][n].state == 1) {
-						myWriter.write("ElectronHead" + " " + i + " " + j + "\n");
+						myWriter.write("\n" + "ElectronHead" + " " + i + " " + j);
 					} else if (matrix.board[i][j][n].state == 2) {
-						myWriter.write("ElectronTail" + " " + i + " " + j + "\n");
+						myWriter.write("\n" + "ElectronTail" + " " + i + " " + j);
 					} else if (matrix.board[i][j][n].state == 3) {
-						myWriter.write("Conductor" + " " + i + " " + j + "\n");
+						myWriter.write("\n" + "Conductor" + " " + i + " " + j );
 					}
 				}
 			}

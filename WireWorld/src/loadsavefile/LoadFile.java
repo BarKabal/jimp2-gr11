@@ -9,12 +9,11 @@ public class LoadFile {
 		try {
 			File myObj = new File("wireworldmacierz.txt");
 			Scanner myReader = new Scanner(myObj);
-			System.out.println(myReader.nextInt() + " " + myReader.nextInt()); 
+			System.out.println(myReader.nextInt() + " " + myReader.nextInt());
 			while (myReader.hasNextLine()) {
 				String data = myReader.nextLine();
 				System.out.println(data);
 			}
-			System.out.println();
 			myReader.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("An error occurred.");
