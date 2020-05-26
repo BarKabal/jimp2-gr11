@@ -1,4 +1,5 @@
 package wireworldfiles;
+import loadsavefile.LoadFile;
 import loadsavefile.SaveFile;
 public class Matrix {
 	public int rows;
@@ -21,6 +22,7 @@ public class Matrix {
 	}
 
 	public static void main(String[] args) {
+		LoadFile.loadFile();
 		Matrix matrix = new Matrix(5, 5, 5);
 		initializeMatrix(matrix);
 		for (int n = 0; n < matrix.iteration; n++) {
