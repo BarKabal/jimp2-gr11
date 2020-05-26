@@ -1,0 +1,26 @@
+5 5
+Conductor 0 0
+Conductor 0 1
+Conductor 0 2
+Conductor 0 3
+Conductor 0 4
+Conductor 1 0
+Conductor 1 1
+Conductor 1 2
+Conductor 1 3
+Conductor 1 4
+Conductor 2 0
+Conductor 2 1
+Conductor 2 2
+Conductor 2 3
+Conductor 2 4
+Conductor 3 0
+Conductor 3 1
+Conductor 3 2
+Conductor 3 3
+Conductor 3 4
+Conductor 4 0
+Conductor 4 1
+Conductor 4 2
+Conductor 4 3
+Conductor 4 4

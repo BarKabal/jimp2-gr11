@@ -1,5 +1,5 @@
 package wireworldfiles;
-
+import loadsavefile.SaveFile;
 public class Matrix {
 	public int rows;
 	public int collumns;
@@ -7,30 +7,32 @@ public class Matrix {
 
 	public Cell[][][] board; // Cell[rows][collumns][iteration]
 
-	Matrix(int rows, int collumns, int iteration) {
+	public Matrix(int rows, int collumns, int iteration) {
 		this.rows = rows;
 		this.collumns = collumns;
 		this.iteration = iteration;
 		this.board = new Cell[rows][collumns][iteration];
 	}
 
-	Matrix(int rows, int collumns, Cell board[][][]) {
+	public Matrix(int rows, int collumns, Cell board[][][]) {
 		this.rows = rows;
 		this.collumns = collumns;
 		this.board = board;
 	}
 
 	public static void main(String[] args) {
-		Matrix matrix = new Matrix(2, 2, 5);
+		Matrix matrix = new Matrix(5, 5, 5);
 		initializeMatrix(matrix);
 		for (int n = 0; n < matrix.iteration; n++) {
 			checkCell(matrix.rows, matrix.collumns, n, matrix);
 			printMatrix(n, matrix);
 			
-			changeMatrix(n, matrix);
+			if(n+1 < matrix.iteration)
+				changeMatrix(n, matrix);
 		}
-		
+		SaveFile.saveFile(matrix.iteration - 1, matrix);
 	}
+
 
 	public static void printMatrix(int n, Matrix matrix) {
 
