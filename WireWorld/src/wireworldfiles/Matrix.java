@@ -5,7 +5,9 @@ public class Matrix {
 	public int rows;
 	public int columns;
 	public int iteration;
-
+	public int DEFAULT_ITERATION = 10;
+	
+	
 	public Cell[][][] board; // Cell[rows][columns][iteration]
 
 	public Matrix(int rows, int columns, int iteration) {
@@ -18,7 +20,7 @@ public class Matrix {
 	public Matrix(int rows, int columns) {
 		this.rows = rows;
 		this.columns = columns;
-		this.iteration = 5;
+		this.iteration = DEFAULT_ITERATION;;
 		this.board = new Cell[rows][columns][iteration];
 	}
 	
@@ -26,7 +28,7 @@ public class Matrix {
 		this.rows = rows;
 		this.columns = columns;
 		this.board = board;
-		this.iteration = 5;
+		this.iteration = DEFAULT_ITERATION;
 	}
 
 	public static void main(String[] args) {
