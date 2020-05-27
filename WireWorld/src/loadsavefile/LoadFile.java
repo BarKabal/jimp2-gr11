@@ -4,20 +4,22 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import wireworldfiles.Matrix;
+
 public class LoadFile {
-	public static void loadFile() {
+	public static Matrix loadMatrixSize() {
 		try {
 			File myObj = new File("wireworldmacierz.txt");
 			Scanner myReader = new Scanner(myObj);
-			System.out.println(myReader.nextInt() + " " + myReader.nextInt());
-			while (myReader.hasNextLine()) {
-				String data = myReader.nextLine();
-				System.out.println(data);
-			}
+			int rows = myReader.nextInt();
+			int columns = myReader.nextInt();
 			myReader.close();
+			Matrix matrix = new Matrix(rows, columns);
+			return matrix;
 		} catch (FileNotFoundException e) {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
 		}
+		return null;
 	}
 }

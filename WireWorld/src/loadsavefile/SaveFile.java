@@ -15,9 +15,9 @@ public class SaveFile {
 		File myObj = new File("wireworldmacierz.txt");
 		try {
 			FileWriter myWriter = new FileWriter(myObj);
-			myWriter.write(matrix.rows + " " + matrix.collumns + "\n");
+			myWriter.write(matrix.rows + " " + matrix.columns);
 			for (int i = 0; i < matrix.rows; i++) {
-				for (int j = 0; j < matrix.collumns; j++) {
+				for (int j = 0; j < matrix.columns; j++) {
 					if (matrix.board[i][j][n].state == 1) {
 						myWriter.write("\n" + "ElectronHead" + " " + i + " " + j);
 					} else if (matrix.board[i][j][n].state == 2) {
