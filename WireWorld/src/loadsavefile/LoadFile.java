@@ -7,6 +7,7 @@ import java.util.Scanner;
 import wireworldfiles.Matrix;
 
 public class LoadFile {
+
 	public static Matrix loadMatrixSize() {
 		try {
 			File myObj = new File("wireworldmacierz.txt");
@@ -21,5 +22,36 @@ public class LoadFile {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static void loadMatrixState(Matrix matrix) {
+		try {
+			File myObj = new File("wireworldmacierz.txt");
+			Scanner myReader = new Scanner(myObj);
+			int i = 3;
+			int j = 3;
+			while (myReader.hasNextLine()) {
+				String n = myReader.next();
+				if (n.equals("Conductor")) {
+					i = myReader.nextInt();
+					j = myReader.nextInt();
+					matrix.board[i][j][0].state = 3;
+				} else if (n.equals("ElectronTail")) {
+					i = myReader.nextInt();
+					j = myReader.nextInt();
+					matrix.board[i][j][0].state = 2;
+
+				} else if (n.equals("ElectronHead")) {
+					i = myReader.nextInt();
+					j = myReader.nextInt();
+					matrix.board[i][j][0].state = 1;
+				}
+			}
+			myReader.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		}
 	}
 }

@@ -26,11 +26,14 @@ public class Matrix {
 		this.rows = rows;
 		this.columns = columns;
 		this.board = board;
+		this.iteration = 5;
 	}
 
 	public static void main(String[] args) {
 		Matrix matrix = LoadFile.loadMatrixSize();
 		initializeMatrix(matrix);
+		LoadFile.loadMatrixState(matrix);
+		
 		for (int n = 0; n < matrix.iteration; n++) {
 			
 			checkCell(matrix.rows, matrix.columns, n, matrix);
