@@ -1,7 +1,6 @@
 package wireworldfiles;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Window extends JFrame {
     //Color mainBackgroundColor = new Color(253, 204, 125, 221);        Potem to dodam.
@@ -11,14 +10,14 @@ public class Window extends JFrame {
     public void run(){
         setBasics();
         setMenu();
-        add(new GIFCanvas());
+        setGif();
         setVisible(true);
     }
 
     private void setBasics() {
         setTitle("WireWorld");
         setSize(1000,800);
-        setLayout(new BorderLayout());
+        setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
@@ -32,5 +31,12 @@ public class Window extends JFrame {
     public static void main(String[] args){
         Window window = new Window();
         window.run();
+    }
+
+    public void setGif() {
+        Icon imgIcon = new ImageIcon(this.getClass().getResource("example.gif"));
+        JLabel label = new JLabel(imgIcon);
+        label.setBounds(100, 50, 600, 600); // You can use your own values
+        getContentPane().add(label);
     }
 }
