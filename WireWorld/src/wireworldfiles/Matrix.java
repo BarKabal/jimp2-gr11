@@ -1,59 +1,57 @@
 package wireworldfiles;
+
+import java.util.ArrayList;
+
+import loadsavefile.CreateImage;
 import loadsavefile.LoadFile;
 import loadsavefile.SaveFile;
+
 public class Matrix {
 	public int rows;
 	public int columns;
 	public int iteration;
-	public int DEFAULT_ITERATION = 10;
-	
-	
-	public Cell[][][] board; // Cell[rows][columns][iteration]
+	public static int DEFAULT_ITERATION = 100;
 
-	public Matrix(int rows, int columns, int iteration) {
-		this.rows = rows;
-		this.columns = columns;
-		this.iteration = iteration;
-		this.board = new Cell[rows][columns][iteration];
-	}
-	
+	public ArrayList<Cell>[][] board; // Cell[rows][columns]
+
+	@SuppressWarnings("unchecked") //wyrzuca b³¹d przy tworzeniu ArrayListy podwójnej tablicy, nie sprawia to jednak problemów
 	public Matrix(int rows, int columns) {
 		this.rows = rows;
 		this.columns = columns;
-		this.iteration = DEFAULT_ITERATION;;
-		this.board = new Cell[rows][columns][iteration];
+		this.board = new ArrayList[rows][columns];
 	}
-	
-	public Matrix(int rows, int columns, Cell board[][][]) {
+
+
+	public Matrix(int rows, int columns, ArrayList<Cell>[][] board) {
 		this.rows = rows;
 		this.columns = columns;
 		this.board = board;
-		this.iteration = DEFAULT_ITERATION;
 	}
 
 	public static void main(String[] args) {
 		Matrix matrix = LoadFile.loadMatrixSize();
-		initializeMatrix(matrix);
-		LoadFile.loadMatrixState(matrix);
+
 		
-		for (int n = 0; n < matrix.iteration; n++) {
-			
+		startMatrix(matrix);
+		LoadFile.loadMatrixState(matrix);
+		for (int n = 0; n < DEFAULT_ITERATION; n++) {
+
 			checkCell(matrix.rows, matrix.columns, n, matrix);
 			printMatrix(n, matrix);
-			
-			if(n+1 < matrix.iteration)
+			initializeMatrix(matrix);
+			if (n + 1 < DEFAULT_ITERATION)
 				changeMatrix(n, matrix);
 		}
-		SaveFile.saveFile(matrix.iteration - 1, matrix);
+		SaveFile.saveFile(DEFAULT_ITERATION  - 1, matrix);
+		CreateImage.MakeImage(matrix, 5);
 	}
-
 
 	public static void printMatrix(int n, Matrix matrix) {
 
 		System.out.println((n + 1) + ". Iteracja:");
 		for (int i = 0; i < matrix.rows; i++) {
 			for (int j = 0; j < matrix.columns; j++) {
-				System.out.print(matrix.board[i][j][n].state + " ");
+				System.out.print(matrix.board[i][j].get(n).state + " ");
 			}
 			System.out.println();
 		}
@@ -61,56 +59,63 @@ public class Matrix {
 	}
 
 	public static void initializeMatrix(Matrix matrix) {
-		for (int n = 0; n < matrix.iteration; n++) {
-			for (int i = 0; i < matrix.rows; i++) {
-				for (int j = 0; j < matrix.columns; j++) {
-					matrix.board[i][j][n] = new Cell(0);
-				}
+		for (int i = 0; i < matrix.rows; i++) {
+			for (int j = 0; j < matrix.columns; j++) {
+				matrix.board[i][j].add(new Cell(0));
 			}
 		}
 	}
-
+	
+	public static void startMatrix(Matrix matrix) {
+		for (int i = 0; i < matrix.rows; i++) {
+			for (int j = 0; j < matrix.columns; j++) {
+				matrix.board[i][j] = new ArrayList<Cell>();
+				matrix.board[i][j].add(new Cell(0));
+			}
+		}
+	}
+	
 	public static void checkCell(int rows, int columns, int n, Matrix matrix) {
 		for (int r = 0; r < rows; r++) {
 			for (int c = 0; c < columns; c++) {
 				if (c - 1 >= 0) {
 					if (r - 1 >= 0) {
-						if (matrix.board[r - 1][c - 1][n].state == 1)
-							matrix.board[r][c][n].headCounter++;
+						if (matrix.board[r - 1][c - 1].get(n).state == 1)
+							matrix.board[r][c].get(n).headCounter++;
 					}
-					if (matrix.board[r][c - 1][n].state == 1) {
-						matrix.board[r][c][n].headCounter++;
+					if (matrix.board[r][c - 1].get(n).state == 1) {
+						matrix.board[r][c].get(n).headCounter++;
 					}
 					if (r + 1 < rows) {
-						if (matrix.board[r + 1][c - 1][n].state == 1) {
-							matrix.board[r][c][n].headCounter++;
+						if (matrix.board[r + 1][c - 1].get(n).state == 1) {
+							matrix.board[r][c].get(n).headCounter++;
 						}
 					}
 				}
 				if (r - 1 >= 0) {
-					if (matrix.board[r - 1][c][n].state == 1) {
-						matrix.board[r][c][n].headCounter++;
+					if (matrix.board[r - 1][c].get(n).state == 1) {
+						matrix.board[r][c].get(n).headCounter++;
 					}
 				}
 				if (r + 1 < rows) {
-					if (matrix.board[r + 1][c][n].state == 1) {
-						matrix.board[r][c][n].headCounter++;
+					if (matrix.board[r + 1][c].get(n).state == 1) {
+						matrix.board[r][c].get(n).headCounter++;
 					}
 				}
 				if (c + 1 < columns) {
 					if (r - 1 >= 0) {
-						if (matrix.board[r - 1][c + 1][n].state == 1) {
-							matrix.board[r][c][n].headCounter++;
+						if (matrix.board[r - 1][c + 1].get(n).state == 1) {
+							matrix.board[r][c].get(n).headCounter++;
 						}
 					}
 
-					if (matrix.board[r][c + 1][n].state == 1) {
-						matrix.board[r][c][n].headCounter++;
+					if (matrix.board[r][c + 1].get(n).state == 1) {
+						matrix.board[r][c].get(n).headCounter++;
 					}
 
 					if (r + 1 < rows) {
-						if (matrix.board[r + 1][c + 1][n].state == 1) {
-							matrix.board[r][c][n].headCounter++;
+						if (matrix.board[r + 1][c + 1].get(n).state == 1) {
+							matrix.board[r][c].get(n).headCounter++;
 						}
 					}
 				}
@@ -122,22 +127,22 @@ public class Matrix {
 	public static void changeMatrix(int n, Matrix matrix) {
 		for (int i = 0; i < matrix.rows; i++) {
 			for (int j = 0; j < matrix.columns; j++) {
-				changeState(matrix.board[i][j][n], matrix.board[i][j][n+1]);
+				changeState(matrix.board[i][j].get(n), matrix.board[i][j].get(n + 1));
 			}
 		}
 	}
 
-	private static void changeState(Cell cell1, Cell cell2) {
-		if (cell1.state == 0)
-			cell2.state = 0;
-		else if (cell1.state == 1)
-			cell2.state = 2;
-		else if (cell1.state == 2) 
-			cell2.state = 3;
-		else if (cell1.headCounter == 1 || cell1.headCounter == 2)
-			cell2.state = 1;
+	private static void changeState(Cell previousCell, Cell nextCell) {
+		if (previousCell.state == 0)
+			nextCell.state = 0;
+		else if (previousCell.state == 1)
+			nextCell.state = 2;
+		else if (previousCell.state == 2)
+			nextCell.state = 3;
+		else if (previousCell.headCounter == 1 || previousCell.headCounter == 2)
+			nextCell.state = 1;
 		else
-			cell2.state = 3;
+			nextCell.state = 3;
 	}
 
 }

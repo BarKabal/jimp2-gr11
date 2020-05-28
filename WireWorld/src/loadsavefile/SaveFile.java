@@ -18,11 +18,11 @@ public class SaveFile {
 			myWriter.write(matrix.rows + " " + matrix.columns);
 			for (int i = 0; i < matrix.rows; i++) {
 				for (int j = 0; j < matrix.columns; j++) {
-					if (matrix.board[i][j][n].state == 1) {
+					if (matrix.board[i][j].get(n).state == 1) {
 						myWriter.write("\n" + "ElectronHead" + " " + i + " " + j);
-					} else if (matrix.board[i][j][n].state == 2) {
+					} else if (matrix.board[i][j].get(n).state == 2) {
 						myWriter.write("\n" + "ElectronTail" + " " + i + " " + j);
-					} else if (matrix.board[i][j][n].state == 3) {
+					} else if (matrix.board[i][j].get(n).state == 3) {
 						myWriter.write("\n" + "Conductor" + " " + i + " " + j );
 					}
 				}

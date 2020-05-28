@@ -35,16 +35,16 @@ public class LoadFile {
 				if (n.equals("Conductor")) {
 					i = myReader.nextInt();
 					j = myReader.nextInt();
-					matrix.board[i][j][0].state = 3;
+					matrix.board[i][j].get(0).state = 3;
 				} else if (n.equals("ElectronTail")) {
 					i = myReader.nextInt();
 					j = myReader.nextInt();
-					matrix.board[i][j][0].state = 2;
+					matrix.board[i][j].get(0).state = 2;
 
 				} else if (n.equals("ElectronHead")) {
 					i = myReader.nextInt();
 					j = myReader.nextInt();
-					matrix.board[i][j][0].state = 1;
+					matrix.board[i][j].get(0).state = 1;
 				}
 			}
 			myReader.close();
