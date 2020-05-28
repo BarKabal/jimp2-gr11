@@ -12,7 +12,7 @@ public class SaveFile {
 	}
 
 	public static void saveFile(int n, Matrix matrix) {
-		File myObj = new File("wireworldmacierz.txt");
+		File myObj = new File("wireworldmacierzOut.txt");
 		try {
 			FileWriter myWriter = new FileWriter(myObj);
 			myWriter.write(matrix.rows + " " + matrix.columns);

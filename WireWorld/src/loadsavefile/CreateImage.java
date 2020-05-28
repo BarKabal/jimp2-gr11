@@ -16,7 +16,7 @@ public class CreateImage {
     static Color head = Color.BLUE;
     static Color tail = Color.RED;
     static Color transmitter = Color.YELLOW;
-    static BufferedImage img = new BufferedImage(600,600, BufferedImage.TYPE_INT_RGB);     /*ca³oœæ 600x600 pikseli, obs³uguje 100x100 komórek wiêc komórka 6x6 pikseli*/
+    static BufferedImage img = new BufferedImage(600,600, BufferedImage.TYPE_INT_RGB);
 
     private static void MakeImageFromMatrix(Matrix matrix, int iteration) {
     	int cellWidth = (600/matrix.columns);
@@ -36,16 +36,16 @@ public class CreateImage {
                     }
     }
 
-    private static void MakeJPEGFromBufferedImage(String name) throws IOException {
+    private static void MakePNGFromBufferedImage(String name) throws IOException {
         File file = new File(name);
         ImageIO.write(img, "PNG", file);
     }
 
-    public static void MakeImage(Matrix matrix, int iteration) {        //tworzy obrazek (IOException przy wystêpuj¹cej ju¿ nazwie obrazka)
+    public static void MakeImage(Matrix matrix, int iteration) {        //tworzy obrazek
         MakeImageFromMatrix(matrix, iteration);
         String name = Integer.toString(iteration);
         try {
-            MakeJPEGFromBufferedImage(name+".png");
+            MakePNGFromBufferedImage(name+".png");
         }
         catch (IOException e) {
             e.printStackTrace();

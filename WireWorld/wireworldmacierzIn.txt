@@ -1,8 +1,8 @@
 6 10
 Conductor 2 5
 Conductor 2 6
-Conductor 3 0
-Conductor 3 1
+ElectronTail 3 0
+ElectronHead 3 1
 Conductor 3 2
 Conductor 3 3
 Conductor 3 4

@@ -10,7 +10,7 @@ public class Matrix {
 	public int rows;
 	public int columns;
 	public int iteration;
-	public static int DEFAULT_ITERATION = 100;
+	public static int DEFAULT_ITERATION = 10;
 
 	public ArrayList<Cell>[][] board; // Cell[rows][columns]
 
@@ -26,24 +26,6 @@ public class Matrix {
 		this.rows = rows;
 		this.columns = columns;
 		this.board = board;
-	}
-
-	public static void main(String[] args) {
-		Matrix matrix = LoadFile.loadMatrixSize();
-
-		
-		startMatrix(matrix);
-		LoadFile.loadMatrixState(matrix);
-		for (int n = 0; n < DEFAULT_ITERATION; n++) {
-
-			checkCell(matrix.rows, matrix.columns, n, matrix);
-			printMatrix(n, matrix);
-			initializeMatrix(matrix);
-			if (n + 1 < DEFAULT_ITERATION)
-				changeMatrix(n, matrix);
-		}
-		SaveFile.saveFile(DEFAULT_ITERATION  - 1, matrix);
-		CreateImage.MakeImage(matrix, 5);
 	}
 
 	public static void printMatrix(int n, Matrix matrix) {

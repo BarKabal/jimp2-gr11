@@ -10,7 +10,7 @@ public class LoadFile {
 
 	public static Matrix loadMatrixSize() {
 		try {
-			File myObj = new File("wireworldmacierz.txt");
+			File myObj = new File("wireworldmacierzIn.txt");
 			Scanner myReader = new Scanner(myObj);
 			int rows = myReader.nextInt();
 			int columns = myReader.nextInt();
@@ -26,7 +26,7 @@ public class LoadFile {
 
 	public static void loadMatrixState(Matrix matrix) {
 		try {
-			File myObj = new File("wireworldmacierz.txt");
+			File myObj = new File("wireworldmacierzIn.txt");
 			Scanner myReader = new Scanner(myObj);
 			int i = 3;
 			int j = 3;
