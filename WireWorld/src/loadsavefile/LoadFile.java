@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import wireworldfiles.Diode;
 import wireworldfiles.Matrix;
 
 public class LoadFile {
@@ -32,7 +33,11 @@ public class LoadFile {
 			int j = 3;
 			while (myReader.hasNextLine()) {
 				String n = myReader.next();
-				if (n.equals("Conductor")) {
+				if (n.equals("Diode")) {
+					i = myReader.nextInt();
+					j = myReader.nextInt();
+					Diode.createDiode(matrix, i, j);
+				}else if (n.equals("Conductor")) {
 					i = myReader.nextInt();
 					j = myReader.nextInt();
 					matrix.board[i][j].get(0).state = 3;

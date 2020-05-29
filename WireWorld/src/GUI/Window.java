@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import loadsavefile.CreateImage;
 import loadsavefile.LoadFile;
@@ -11,7 +11,7 @@ import static loadsavefile.CreateImage.MakeImage;
 import static wireworldfiles.Matrix.*;
 
 public class Window extends JFrame {
-    //Color mainBackgroundColor = new Color(253, 204, 125, 221);        Potem to dodam.
+	//Color mainBackgroundColor = new Color(253, 204, 125, 221);        Potem to dodam.
     //Color mainMenuBarColor = new Color(196, 157, 77);
     JMenuItem newFile;
 
