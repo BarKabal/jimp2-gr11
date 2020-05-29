@@ -7,28 +7,35 @@ import java.awt.event.ActionListener;
 
 public class Animation extends JPanel implements ActionListener {
 
-    private final ImageIcon[] imageArray;
-    private int currentImage = 0;
+    private int currentImage, howManyImages;
+    JLabel label = new JLabel();
 
-    public Animation(){
-        int totalFrames = 10;                                       //
-        imageArray = new ImageIcon[totalFrames];
-        for (int i = 0; i <imageArray.length; i++)
-            imageArray[i] = new ImageIcon(i + ".png");
-        int delay = 50;                                             //
-        Timer timer = new Timer(delay, this);
-        timer.start();
+    public void StartAnimation(int imageNumber, int startingImage, int delay, Window window){
+        howManyImages = imageNumber;
+        currentImage = startingImage;
+        Timer tm = new Timer(delay, this);
+        label.setBounds(50, 50, 600, 600);
+        window.add(label, BorderLayout.CENTER);
+        tm.start();
+        ShowImage();
     }
 
-    public void paintComponent(Graphics g){
-        super.paint(g);
-        if (currentImage >= imageArray.length)
+    private void ShowImage() {
+        Icon imgIcon = new ImageIcon(currentImage+".png");
+        label.setIcon(imgIcon);
+        updateUI();
+    }
+
+    private void NextImage() {
+        if (currentImage < howManyImages-1) {
+            currentImage++;
+        }
+        else
             currentImage = 0;
-        currentImage++;
-        imageArray[currentImage].paintIcon(this, g,50,50);
+        ShowImage();
     }
 
     public void actionPerformed(ActionEvent e){
-        repaint();
+        NextImage();
     }
 }
