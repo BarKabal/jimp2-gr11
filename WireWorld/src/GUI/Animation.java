@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +7,9 @@ import java.awt.event.ActionListener;
 
 public class Animation extends JPanel implements ActionListener {
 
-    private int currentImage, howManyImages, delayOfTheAnimation;       //dla 1 obrazka currentimage = 0 a howManyImages = 1
+    int currentImage;       //dla 1 obrazka currentimage = 0 a howManyImages = 1
+	private int howManyImages;
+	private int delayOfTheAnimation;
     JLabel label = new JLabel();
     Timer tm;
     boolean isAnimationGoing = true;

@@ -5,12 +5,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import wireworldfiles.Diode;
+import wireworldfiles.DiodeReversed;
+import wireworldfiles.Generator;
 import wireworldfiles.Matrix;
 
 public class SaveFile {
-	public SaveFile() {
-
-	}
 
 	public static void saveFile(int n, Matrix matrix) {
 		File myObj = new File("wireworldmacierzOut.txt");
@@ -22,18 +21,28 @@ public class SaveFile {
 				for (int j = 0; j < matrix.columns; j++) {
 					if (matrix.board[i][j].get(n).alreadyInFile == false
 							&& matrix.board[i][j].get(n).isActive == true) {
-						if ((i + 2 < matrix.rows) && (j + 1 < matrix.columns)
+						if ((i + 5 < matrix.rows) && (j + 2 < matrix.columns) && (j -1 > 0)
+								&& Generator.checkGenerator(matrix, i, j, n) == true) {
+							myWriter.write("\n" + "Generator" + " " + i + " " + j);
+							Generator.saveAsGenerator(matrix, i, j, n);
+						} else if ((i + 2 < matrix.rows) && (j + 1 < matrix.columns)
 								&& Diode.checkDiode(matrix, i, j, n) == true) {
 							myWriter.write("\n" + "Diode" + " " + i + " " + j);
 							Diode.saveAsDiode(matrix, i, j, n);
+						} else if ((i + 2 < matrix.rows) && (j + 1 < matrix.columns)
+								&& DiodeReversed.checkDiodeReversed(matrix, i, j, n) == true) {
+							myWriter.write("\n" + "DiodeReversed" + " " + i + " " + j);
+							DiodeReversed.saveAsDiodeReversed(matrix, i, j, n);
 						}
+
 						if (matrix.board[i][j].get(n).state == 1) {
 							myWriter.write("\n" + "ElectronHead" + " " + i + " " + j);
 							matrix.board[i][j].get(n).alreadyInFile = true;
 						} else if (matrix.board[i][j].get(n).state == 2) {
 							myWriter.write("\n" + "ElectronTail" + " " + i + " " + j);
 							matrix.board[i][j].get(n).alreadyInFile = true;
-						} else if (matrix.board[i][j].get(n).state == 3 && matrix.board[i][j].get(n).alreadyInFile == false) {
+						} else if (matrix.board[i][j].get(n).state == 3
+								&& matrix.board[i][j].get(n).alreadyInFile == false) {
 							myWriter.write("\n" + "Conductor" + " " + i + " " + j);
 							matrix.board[i][j].get(n).alreadyInFile = true;
 						}
