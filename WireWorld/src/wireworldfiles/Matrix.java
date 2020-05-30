@@ -2,14 +2,9 @@ package wireworldfiles;
 
 import java.util.ArrayList;
 
-import loadsavefile.CreateImage;
-import loadsavefile.LoadFile;
-import loadsavefile.SaveFile;
-
 public class Matrix {
 	public int rows;
 	public int columns;
-	public int iteration;
 	public static int DEFAULT_ITERATION = 10;
 
 	public ArrayList<Cell>[][] board; // Cell[rows][columns]

@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import wireworldfiles.Diode;
+import wireworldfiles.DiodeReversed;
 import wireworldfiles.Matrix;
 
 public class LoadFile {
@@ -37,7 +38,11 @@ public class LoadFile {
 					i = myReader.nextInt();
 					j = myReader.nextInt();
 					Diode.createDiode(matrix, i, j);
-				}else if (n.equals("Conductor")) {
+				} else if (n.equals("DiodeReversed")) {
+					i = myReader.nextInt();
+					j = myReader.nextInt();
+					DiodeReversed.createDiodeReversed(matrix, i, j);
+				} else if (n.equals("Conductor")) {
 					i = myReader.nextInt();
 					j = myReader.nextInt();
 					matrix.board[i][j].get(0).state = 3;

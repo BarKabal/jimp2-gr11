@@ -5,13 +5,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import wireworldfiles.Diode;
+import wireworldfiles.DiodeReversed;
 import wireworldfiles.Matrix;
 
 public class SaveFile {
-	public SaveFile() {
-
-	}
-
+	
 	public static void saveFile(int n, Matrix matrix) {
 		File myObj = new File("wireworldmacierzOut.txt");
 		try {
@@ -26,14 +24,21 @@ public class SaveFile {
 								&& Diode.checkDiode(matrix, i, j, n) == true) {
 							myWriter.write("\n" + "Diode" + " " + i + " " + j);
 							Diode.saveAsDiode(matrix, i, j, n);
+						} else if ((i + 2 < matrix.rows) && (j + 1 < matrix.columns)
+								&& DiodeReversed.checkDiodeReversed(matrix, i, j, n) == true) {
+							myWriter.write("\n" + "DiodeReversed" + " " + i + " " + j);
+							DiodeReversed.saveAsDiodeReversed(matrix, i, j, n);
 						}
+						
+						
 						if (matrix.board[i][j].get(n).state == 1) {
 							myWriter.write("\n" + "ElectronHead" + " " + i + " " + j);
 							matrix.board[i][j].get(n).alreadyInFile = true;
 						} else if (matrix.board[i][j].get(n).state == 2) {
 							myWriter.write("\n" + "ElectronTail" + " " + i + " " + j);
 							matrix.board[i][j].get(n).alreadyInFile = true;
-						} else if (matrix.board[i][j].get(n).state == 3 && matrix.board[i][j].get(n).alreadyInFile == false) {
+						} else if (matrix.board[i][j].get(n).state == 3
+								&& matrix.board[i][j].get(n).alreadyInFile == false) {
 							myWriter.write("\n" + "Conductor" + " " + i + " " + j);
 							matrix.board[i][j].get(n).alreadyInFile = true;
 						}

@@ -1,10 +1,4 @@
-6 10
-Diode 2 5
-Conductor 3 2
-Conductor 3 3
-Conductor 3 4
-Conductor 3 7
-Conductor 3 8
-Conductor 3 9
-ElectronHead 3 1
-ElectronTail 3 0
+20 20
+Diode 2 0
+DiodeReversed 2 5
+ElectronHead 2 5
