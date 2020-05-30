@@ -1,4 +1,4 @@
-package gui;
+package GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class Animation extends JPanel implements ActionListener {
 
-    private int currentImage, howManyImages, delayOfTheAnimation;
+    private int currentImage, howManyImages, delayOfTheAnimation;       //dla 1 obrazka currentimage = 0 a howManyImages = 1
     JLabel label = new JLabel();
     Timer tm;
     boolean isAnimationGoing = true;
@@ -28,6 +28,16 @@ public class Animation extends JPanel implements ActionListener {
         updateUI();
     }
 
+    public void goToImage(int number) {
+        if (number<=howManyImages)
+            currentImage = (number-1);
+        ShowImage();
+    }
+
+    public void changeHowManyIterations(int number) {
+
+    }
+
     public void NextImage() {
         if (currentImage < howManyImages-1) {
             currentImage++;
@@ -39,7 +49,7 @@ public class Animation extends JPanel implements ActionListener {
 
     public void PreviousImage(){
         if (currentImage == 0)
-            currentImage = 15;
+            currentImage = 9;
         else
             currentImage--;
         ShowImage();
