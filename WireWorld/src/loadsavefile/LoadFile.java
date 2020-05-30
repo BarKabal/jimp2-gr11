@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import wireworldfiles.Diode;
 import wireworldfiles.DiodeReversed;
+import wireworldfiles.Generator;
 import wireworldfiles.Matrix;
 
 public class LoadFile {
@@ -34,7 +35,11 @@ public class LoadFile {
 			int j = 3;
 			while (myReader.hasNextLine()) {
 				String n = myReader.next();
-				if (n.equals("Diode")) {
+				if (n.equals("Generator")) {
+					i = myReader.nextInt();
+					j = myReader.nextInt();
+					Generator.createGenerator(matrix, i, j);
+				} else if (n.equals("Diode")) {
 					i = myReader.nextInt();
 					j = myReader.nextInt();
 					Diode.createDiode(matrix, i, j);

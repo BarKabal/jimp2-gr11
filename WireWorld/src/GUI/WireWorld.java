@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import loadsavefile.LoadFile;
 import loadsavefile.SaveFile;
@@ -9,9 +9,9 @@ import static wireworldfiles.Matrix.*;
 import static wireworldfiles.Matrix.DEFAULT_ITERATION;
 
 public class WireWorld {
-
+	
     public static void main(String[] args){
-        Matrix matrix = LoadFile.loadMatrixSize();
+    	Matrix matrix = LoadFile.loadMatrixSize();
         Matrix.startMatrix(matrix);
         LoadFile.loadMatrixState(matrix);
         for (int n = 0; n < Matrix.DEFAULT_ITERATION; n++) {

@@ -1,6 +1,10 @@
-package GUI;
+package gui;
 
 import javax.swing.*;
+
+import loadsavefile.SaveFile;
+import wireworldfiles.Matrix;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -121,7 +125,7 @@ public class Window extends JFrame implements ActionListener {
     private void setAnimation() {
         animation = new Animation();
         animation.setBounds(50,50,600,600);
-        animation.StartAnimation(10, 0, 500, this);
+        animation.StartAnimation(12, 0, 500, this);
     }
 
     @Override

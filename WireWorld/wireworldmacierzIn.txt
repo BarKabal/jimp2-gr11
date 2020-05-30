@@ -1,4 +1,4 @@
 20 20
-Diode 2 0
-DiodeReversed 2 5
-ElectronHead 2 5
+Generator 2 2
+ElectronTail 2 2
+ElectronHead 2 3
