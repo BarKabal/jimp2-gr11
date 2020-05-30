@@ -126,5 +126,16 @@ public class Matrix {
 		else
 			nextCell.state = 3;
 	}
-
+	
+	public static void isActive(int n, Matrix matrix) {
+		for (int i = 0; i < matrix.rows; i++) {
+			for (int j = 0; j < matrix.columns; j++) {
+				if (matrix.board[i][j].get(n).state != 0) {
+					matrix.board[i][j].get(n).isActive = true;
+				}
+				else
+					matrix.board[i][j].get(n).isActive = false;
+			}
+		}
+	}
 }

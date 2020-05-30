@@ -24,7 +24,7 @@ public class WireWorld {
         }
         Window window = new Window();
         window.run();
-        SaveFile.saveFile(DEFAULT_ITERATION  - 1, matrix);
+        SaveFile.saveFile(Matrix.DEFAULT_ITERATION - 1, matrix);
     }
 
 }

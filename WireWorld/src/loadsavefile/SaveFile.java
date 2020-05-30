@@ -17,31 +17,35 @@ public class SaveFile {
 		try {
 			FileWriter myWriter = new FileWriter(myObj);
 			myWriter.write(matrix.rows + " " + matrix.columns);
+			Matrix.isActive(n, matrix);
 			for (int i = 0; i < matrix.rows; i++) {
 				for (int j = 0; j < matrix.columns; j++) {
-					if (matrix.board[i][j].get(n).alreadyInFile == false) {
+					if (matrix.board[i][j].get(n).alreadyInFile == false
+							&& matrix.board[i][j].get(n).isActive == true) {
+						if ((i + 2 < matrix.rows) && (j + 1 < matrix.columns)
+								&& Diode.checkDiode(matrix, i, j, n) == true) {
+							myWriter.write("\n" + "Diode" + " " + i + " " + j);
+							Diode.saveAsDiode(matrix, i, j, n);
+						}
 						if (matrix.board[i][j].get(n).state == 1) {
 							myWriter.write("\n" + "ElectronHead" + " " + i + " " + j);
 							matrix.board[i][j].get(n).alreadyInFile = true;
 						} else if (matrix.board[i][j].get(n).state == 2) {
 							myWriter.write("\n" + "ElectronTail" + " " + i + " " + j);
 							matrix.board[i][j].get(n).alreadyInFile = true;
-						} else if (matrix.board[i][j].get(n).state == 3) {
-							if ((i + 2 < matrix.rows) && (j + 1 < matrix.columns)
-									&& Diode.checkDiode(matrix, i, j) == true) {
-								myWriter.write("\n" + "Diode" + " " + i + " " + j);
-								Diode.saveAsDiode(matrix, i, j, n);
-							} else {
-								myWriter.write("\n" + "Conductor" + " " + i + " " + j);
-								matrix.board[i][j].get(n).alreadyInFile = true;
-							}
+						} else if (matrix.board[i][j].get(n).state == 3 && matrix.board[i][j].get(n).alreadyInFile == false) {
+							myWriter.write("\n" + "Conductor" + " " + i + " " + j);
+							matrix.board[i][j].get(n).alreadyInFile = true;
 						}
 					}
 				}
 			}
+
 			myWriter.close();
 			System.out.println("Successfully wrote to the file.");
-		} catch (IOException e) {
+		} catch (
+
+		IOException e) {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
 		}
