@@ -38,7 +38,7 @@ public class Animation extends JPanel implements ActionListener {
     }
 
     public void PreviousImage(){
-        if (currentImage == 1)
+        if (currentImage == 0)
             currentImage = 15;
         else
             currentImage--;

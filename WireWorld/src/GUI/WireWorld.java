@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import loadsavefile.LoadFile;
 import loadsavefile.SaveFile;
