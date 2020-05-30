@@ -1,4 +1,4 @@
-package gui;
+package GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -135,7 +135,7 @@ public class Window extends JFrame implements ActionListener {
             case "PREVIOUS": animation.PreviousImage(); break;
             case "SAVE CURRENT": /*Do That*/; break;
             case "SETNUMOFITER": /*Do That*/; break;
-            case "SETSHOWITERNUM": /*Do That*/; break;
+            case "SETSHOWITERNUM": animation.goToImage(Integer.parseInt(showIterNumField.getText())); break;
 
         }
     }
