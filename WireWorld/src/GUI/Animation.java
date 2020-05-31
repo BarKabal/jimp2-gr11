@@ -33,6 +33,7 @@ public class Animation extends JPanel implements ActionListener {
 
 	private void ShowImage() {
 		Icon imgIcon = new ImageIcon(currentImage + ".png");
+		System.out.println("Showing image" + currentImage);
 		label.setIcon(imgIcon);
 		updateUI();
 	}
@@ -56,10 +57,10 @@ public class Animation extends JPanel implements ActionListener {
 		WireWorld.matrix = LoadFile.loadMatrixSize();
 		WireWorld.matrix.startMatrix();
         LoadFile.loadMatrixState(WireWorld.matrix);
-        WireWorld.matrix.iteration = number;
+        Matrix.iteration = number;
 		WireWorld.makeIterations();
 		StopTimer();
-		howManyImages = number + 1;
+		howManyImages = number;
 		currentImage = 0;
 		ShowImage();
 		StartTimer();

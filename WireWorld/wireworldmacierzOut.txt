@@ -1,4 +1,4 @@
 20 20
 Generator 2 2
-ElectronHead 2 2
-ElectronTail 3 1
+ElectronTail 2 5
+ElectronHead 2 6
