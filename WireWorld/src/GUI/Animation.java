@@ -47,11 +47,9 @@ public class Animation extends JPanel implements ActionListener {
 
 	public void changeHowManyIterations(int number) {
 		CreateImage.deleteImages();
-		for (int n = 0; n < 12; n++) {
-			for (int i = 0; i < WireWorld.matrix.rows; i++) {
-				for (int j = 0; j < WireWorld.matrix.columns; j++) {
-					WireWorld.matrix.board[i][j].clear();
-				}
+		for (int i = 0; i < WireWorld.matrix.rows; i++) {
+			for (int j = 0; j < WireWorld.matrix.columns; j++) {
+				WireWorld.matrix.board[i][j].clear();
 			}
 		}
 		WireWorld.matrix = LoadFile.loadMatrixSize();

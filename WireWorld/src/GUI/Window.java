@@ -121,7 +121,7 @@ public class Window extends JFrame implements ActionListener {
     private void addFields() {      // numOfIterField, showIterNumField;
         numOfIterField = new JTextField();
         numOfIterField.setBounds(650,100,150,20);
-        numOfIterField.setText("10");
+        numOfIterField.setText(String.valueOf(Matrix.iteration));
         add(numOfIterField);
         showIterNumField = new JTextField();
         showIterNumField.setBounds(650,150,150,20);
