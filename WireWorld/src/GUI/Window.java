@@ -2,6 +2,7 @@ package gui;
 
 import javax.swing.*;
 
+import loadsavefile.CreateImage;
 import loadsavefile.SaveFile;
 import wireworldfiles.Matrix;
 
@@ -126,7 +127,7 @@ public class Window extends JFrame implements ActionListener {
     private void setAnimation() {
         animation = new Animation();
         animation.setBounds(50,50,600,600);
-        animation.StartAnimation(Matrix.DEFAULT_ITERATION, 0, 500, this);
+        animation.StartAnimation(Matrix.iteration, 0, 500, this);
     }
 
     @Override
@@ -139,7 +140,7 @@ public class Window extends JFrame implements ActionListener {
             case "NEXT": animation.NextImage(); break;
             case "PREVIOUS": animation.PreviousImage(); break;
             case "SAVE CURRENT": SaveFile.saveFile(animation.currentImage, WireWorld.matrix); break;
-            case "SETNUMOFITER": /*Do That */; break;
+            case "SETNUMOFITER": animation.changeHowManyIterations(Integer.parseInt(numOfIterField.getText())); break;
             case "SETSHOWITERNUM": animation.goToImage(Integer.parseInt(showIterNumField.getText())); break;
 
         }
