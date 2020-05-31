@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+
+import static java.nio.file.Files.deleteIfExists;
 
 /*https://www.javamex.com/tutorials/graphics/bufferedimage.shtml*/
 
@@ -49,6 +52,20 @@ public class CreateImage {
         }
         catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void deleteImages() {
+        boolean moreFiles = true;
+        for(int num = 0; moreFiles; num++) {
+            File file = new File(num+".png");
+            Path path = file.toPath();
+            try {
+                if(!deleteIfExists(path))
+                    moreFiles = false;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

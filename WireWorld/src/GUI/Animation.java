@@ -1,4 +1,7 @@
-package gui;
+package GUI;
+
+import loadsavefile.CreateImage;
+import wireworldfiles.Matrix;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,7 +40,14 @@ public class Animation extends JPanel implements ActionListener {
     }
 
     public void changeHowManyIterations(int number) {
-
+        CreateImage.deleteImages();
+        Matrix.iteration = number;
+        WireWorld.makeIterations();
+        StopTimer();
+        howManyImages = number+1;
+        currentImage = 0;
+        ShowImage();
+        StartTimer();
     }
 
     public void NextImage() {
