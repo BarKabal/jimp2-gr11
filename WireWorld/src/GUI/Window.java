@@ -7,10 +7,7 @@ import loadsavefile.SaveFile;
 import wireworldfiles.Matrix;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 
 public class Window extends JFrame implements ActionListener {
     //Color mainBackgroundColor = new Color(253, 204, 125, 221);        Potem to dodam.
@@ -23,6 +20,13 @@ public class Window extends JFrame implements ActionListener {
 
     public void run(){
         setBasics();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                CreateImage.deleteImages();
+            }
+        });
         addOptions();
         setAnimation();
         setVisible(true);
