@@ -63,7 +63,8 @@ public class Animation extends JPanel implements ActionListener {
 		howManyImages = number;
 		currentImage = 0;
 		ShowImage();
-		StartTimer();
+		if(isAnimationGoing)
+			StartTimer();
 	}
 
 	public void NextImage() {
