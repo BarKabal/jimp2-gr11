@@ -23,76 +23,76 @@ public class Matrix {
 		this.board = board;
 	}
 
-	public static void printMatrix(int n, Matrix matrix) {
+	public void printMatrix(int n) {
 
 		System.out.println((n + 1) + ". Iteracja:");
-		for (int i = 0; i < matrix.rows; i++) {
-			for (int j = 0; j < matrix.columns; j++) {
-				System.out.print(matrix.board[i][j].get(n).state + " ");
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
+				System.out.print(board[i][j].get(n).state + " ");
 			}
 			System.out.println();
 		}
 
 	}
 
-	public static void initializeMatrix(Matrix matrix) {
-		for (int i = 0; i < matrix.rows; i++) {
-			for (int j = 0; j < matrix.columns; j++) {
-				matrix.board[i][j].add(new Cell(0));
+	public void initializeMatrix() {
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
+				board[i][j].add(new Cell(0));
 			}
 		}
 	}
 	
-	public static void startMatrix(Matrix matrix) {
-		for (int i = 0; i < matrix.rows; i++) {
-			for (int j = 0; j < matrix.columns; j++) {
-				matrix.board[i][j] = new ArrayList<Cell>();
-				matrix.board[i][j].add(new Cell(0));
+	public void startMatrix() {
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
+				board[i][j] = new ArrayList<Cell>();
+				board[i][j].add(new Cell(0));
 			}
 		}
 	}
 	
-	public static void checkCell(int rows, int columns, int n, Matrix matrix) {
+	public void checkCell(int n) {
 		for (int r = 0; r < rows; r++) {
 			for (int c = 0; c < columns; c++) {
 				if (c - 1 >= 0) {
 					if (r - 1 >= 0) {
-						if (matrix.board[r - 1][c - 1].get(n).state == 1)
-							matrix.board[r][c].get(n).headCounter++;
+						if (board[r - 1][c - 1].get(n).state == 1)
+							board[r][c].get(n).headCounter++;
 					}
-					if (matrix.board[r][c - 1].get(n).state == 1) {
-						matrix.board[r][c].get(n).headCounter++;
+					if (board[r][c - 1].get(n).state == 1) {
+						board[r][c].get(n).headCounter++;
 					}
 					if (r + 1 < rows) {
-						if (matrix.board[r + 1][c - 1].get(n).state == 1) {
-							matrix.board[r][c].get(n).headCounter++;
+						if (board[r + 1][c - 1].get(n).state == 1) {
+							board[r][c].get(n).headCounter++;
 						}
 					}
 				}
 				if (r - 1 >= 0) {
-					if (matrix.board[r - 1][c].get(n).state == 1) {
-						matrix.board[r][c].get(n).headCounter++;
+					if (board[r - 1][c].get(n).state == 1) {
+						board[r][c].get(n).headCounter++;
 					}
 				}
 				if (r + 1 < rows) {
-					if (matrix.board[r + 1][c].get(n).state == 1) {
-						matrix.board[r][c].get(n).headCounter++;
+					if (board[r + 1][c].get(n).state == 1) {
+						board[r][c].get(n).headCounter++;
 					}
 				}
 				if (c + 1 < columns) {
 					if (r - 1 >= 0) {
-						if (matrix.board[r - 1][c + 1].get(n).state == 1) {
-							matrix.board[r][c].get(n).headCounter++;
+						if (board[r - 1][c + 1].get(n).state == 1) {
+							board[r][c].get(n).headCounter++;
 						}
 					}
 
-					if (matrix.board[r][c + 1].get(n).state == 1) {
-						matrix.board[r][c].get(n).headCounter++;
+					if (board[r][c + 1].get(n).state == 1) {
+						board[r][c].get(n).headCounter++;
 					}
 
 					if (r + 1 < rows) {
-						if (matrix.board[r + 1][c + 1].get(n).state == 1) {
-							matrix.board[r][c].get(n).headCounter++;
+						if (board[r + 1][c + 1].get(n).state == 1) {
+							board[r][c].get(n).headCounter++;
 						}
 					}
 				}
@@ -101,10 +101,10 @@ public class Matrix {
 
 	}
 
-	public static void changeMatrix(int n, Matrix matrix) {
-		for (int i = 0; i < matrix.rows; i++) {
-			for (int j = 0; j < matrix.columns; j++) {
-				changeState(matrix.board[i][j].get(n), matrix.board[i][j].get(n + 1));
+	public void changeMatrix(int n) {
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
+				changeState(board[i][j].get(n), board[i][j].get(n + 1));
 			}
 		}
 	}
@@ -122,15 +122,24 @@ public class Matrix {
 			nextCell.state = 3;
 	}
 	
-	public static void isActive(int n, Matrix matrix) {
-		for (int i = 0; i < matrix.rows; i++) {
-			for (int j = 0; j < matrix.columns; j++) {
-				if (matrix.board[i][j].get(n).state != 0) {
-					matrix.board[i][j].get(n).isActive = true;
+	public void isActive(int n) {
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
+				if (board[i][j].get(n).state != 0) {
+					board[i][j].get(n).isActive = true;
 				}
 				else
-					matrix.board[i][j].get(n).isActive = false;
+					board[i][j].get(n).isActive = false;
 			}
 		}
 	}
+	
+	public void clearSave(int n) {
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
+				board[i][j].get(n).alreadyInFile = false;
+			}
+		}
+	}
+
 }

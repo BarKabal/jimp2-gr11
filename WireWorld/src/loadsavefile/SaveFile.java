@@ -16,7 +16,8 @@ public class SaveFile {
 		try {
 			FileWriter myWriter = new FileWriter(myObj);
 			myWriter.write(matrix.rows + " " + matrix.columns);
-			Matrix.isActive(n, matrix);
+			matrix.clearSave(n);
+			matrix.isActive(n);
 			for (int i = 0; i < matrix.rows; i++) {
 				for (int j = 0; j < matrix.columns; j++) {
 					if (matrix.board[i][j].get(n).alreadyInFile == false
