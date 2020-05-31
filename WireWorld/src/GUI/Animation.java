@@ -1,4 +1,7 @@
-package gui;
+package GUI;
+
+import loadsavefile.CreateImage;
+import wireworldfiles.Matrix;
 
 import loadsavefile.CreateImage;
 import loadsavefile.LoadFile;
@@ -33,6 +36,7 @@ public class Animation extends JPanel implements ActionListener {
 		label.setIcon(imgIcon);
 		updateUI();
 	}
+
 
 	public void goToImage(int number) {
 		if (number <= howManyImages)
