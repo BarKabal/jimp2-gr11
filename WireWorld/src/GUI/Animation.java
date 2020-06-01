@@ -1,4 +1,4 @@
-package gui;
+package GUI;
 
 import loadsavefile.CreateImage;
 import wireworldfiles.Matrix;
@@ -59,8 +59,12 @@ public class Animation extends JPanel implements ActionListener {
         LoadFile.loadMatrixState(file, WireWorld.matrix);
         Matrix.iteration = number;
 		WireWorld.makeIterations();
-		StopTimer();
 		howManyImages = number;
+		remakeAnimation();
+	}
+
+	public void remakeAnimation() {
+		StopTimer();
 		currentImage = 0;
 		ShowImage();
 		if(isAnimationGoing)

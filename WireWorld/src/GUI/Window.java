@@ -1,4 +1,4 @@
-package gui;
+package GUI;
 
 import javax.swing.*;
 
@@ -12,35 +12,35 @@ import java.awt.event.*;
 import java.io.File;
 
 public class Window extends JFrame implements ActionListener {
-	// Color mainBackgroundColor = new Color(253, 204, 125, 221); Potem to dodam.
-	// Color mainMenuBarColor = new Color(196, 157, 77);
-	JCheckBox animationCheckbox;
-	JLabel numOfIterLabel, showIterNumLabel, title, anim;
-	JButton save, load, next, previous, saveCurrent, numOfIterSet, showIterNumSet;
-	JTextField numOfIterField, showIterNumField;
-	static Animation animation;
+    Color mainBackgroundColor = new Color(255, 243, 174, 255);
+    JCheckBox animationCheckbox;
+    JLabel numOfIterLabel, showIterNumLabel, title, anim;
+    JButton save, load, next, previous, saveCurrent, numOfIterSet, showIterNumSet;
+    JTextField numOfIterField, showIterNumField;
+    static Animation animation;
 
-	public void run() {
-		setBasics();
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				super.windowClosing(e);
-				CreateImage.deleteImages();
-			}
-		});
-		addOptions();
-		setAnimation();
-		setVisible(true);
-	}
+    public void run(){
+        setBasics();
+        addOptions();
+        setAnimation();
+        setVisible(true);
+    }
 
-	private void setBasics() {
-		setTitle("WireWorld");
-		setSize(900, 640);
-		setLayout(new BorderLayout());
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setResizable(false);
-	}
+    private void setBasics() {
+        setTitle("WireWorld");
+        setSize(900,640);
+        setLayout(new BorderLayout());
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                CreateImage.deleteImages();
+            }
+        });
+        getContentPane().setBackground(mainBackgroundColor);
+    }
 
 	private void addOptions() {
 		addCheckboxes();
@@ -148,6 +148,7 @@ public class Window extends JFrame implements ActionListener {
 			WireWorld.selectedFile = fileChooser.getSelectedFile();
 			animation.changeHowManyIterations(WireWorld.selectedFile, WireWorld.matrix.iteration);
 		}
+		animation.remakeAnimation();
 	}
 
 	@Override
