@@ -10,7 +10,7 @@ import wireworldfiles.Generator;
 import wireworldfiles.Matrix;
 
 public class SaveFile {
-
+	
 	public static void saveFile(int n, Matrix matrix) {
 		File myObj = new File("wireworldmacierzOut.txt");
 		try {

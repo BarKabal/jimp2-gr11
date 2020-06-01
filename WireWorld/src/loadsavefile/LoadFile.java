@@ -1,19 +1,26 @@
 package loadsavefile;
 
+import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 
 import wireworldfiles.Diode;
 import wireworldfiles.DiodeReversed;
 import wireworldfiles.Generator;
 import wireworldfiles.Matrix;
 
-public class LoadFile {
-
-	public static Matrix loadMatrixSize() {
+public class LoadFile{
+	
+	public static Matrix loadMatrixSize(File selectedFile) {
 		try {
-			File myObj = new File("wireworldmacierzIn.txt");
+			File myObj = selectedFile;
 			Scanner myReader = new Scanner(myObj);
 			int rows = myReader.nextInt();
 			int columns = myReader.nextInt();
@@ -27,9 +34,9 @@ public class LoadFile {
 		return null;
 	}
 
-	public static void loadMatrixState(Matrix matrix) {
+	public static void loadMatrixState(File selectedFile, Matrix matrix) {
 		try {
-			File myObj = new File("wireworldmacierzIn.txt");
+			File myObj = selectedFile;
 			Scanner myReader = new Scanner(myObj);
 			int i = 3;
 			int j = 3;

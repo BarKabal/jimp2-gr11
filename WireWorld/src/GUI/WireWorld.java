@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import loadsavefile.LoadFile;
 import loadsavefile.SaveFile;
@@ -6,22 +6,25 @@ import wireworldfiles.Matrix;
 
 import static loadsavefile.CreateImage.MakeImage;
 
+import java.io.File;
+
 public class WireWorld {
 
     public static Matrix matrix;
-
+    public static File selectedFile;
     public static void main(String[] args){
-        loadMatrix();
+    	selectedFile = new File("wireworldmacierzIn.txt");
+        loadMatrix(selectedFile);
         makeIterations();
         Window window = new Window();
         window.run();
         SaveFile.saveFile(Matrix.iteration - 1, matrix);
     }
     
-    public static void loadMatrix() {
-    	matrix = LoadFile.loadMatrixSize();
+    public static void loadMatrix(File file) {
+    	matrix = LoadFile.loadMatrixSize(file);
         matrix.startMatrix();
-        LoadFile.loadMatrixState(matrix);
+        LoadFile.loadMatrixState(file, matrix);
     }
 
     public static void makeIterations() {

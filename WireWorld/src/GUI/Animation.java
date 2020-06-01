@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import loadsavefile.CreateImage;
 import wireworldfiles.Matrix;
@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class Animation extends JPanel implements ActionListener {
 
@@ -45,16 +46,17 @@ public class Animation extends JPanel implements ActionListener {
 		ShowImage();
 	}
 
-	public void changeHowManyIterations(int number) {
+	public void changeHowManyIterations(File selectedFile, int number) {
 		CreateImage.deleteImages();
 		for (int i = 0; i < WireWorld.matrix.rows; i++) {
 			for (int j = 0; j < WireWorld.matrix.columns; j++) {
 				WireWorld.matrix.board[i][j].clear();
 			}
 		}
-		WireWorld.matrix = LoadFile.loadMatrixSize();
+		File file = selectedFile;
+		WireWorld.matrix = LoadFile.loadMatrixSize(file);
 		WireWorld.matrix.startMatrix();
-        LoadFile.loadMatrixState(WireWorld.matrix);
+        LoadFile.loadMatrixState(file, WireWorld.matrix);
         Matrix.iteration = number;
 		WireWorld.makeIterations();
 		StopTimer();
