@@ -15,9 +15,10 @@ import wireworldfiles.Diode;
 import wireworldfiles.DiodeReversed;
 import wireworldfiles.Generator;
 import wireworldfiles.Matrix;
+import wireworldfiles.XORGate;
 
-public class LoadFile{
-	
+public class LoadFile {
+
 	public static Matrix loadMatrixSize(File selectedFile) {
 		try {
 			File myObj = selectedFile;
@@ -42,7 +43,11 @@ public class LoadFile{
 			int j = 3;
 			while (myReader.hasNextLine()) {
 				String n = myReader.next();
-				if (n.equals("Generator")) {
+				if (n.equals("XORGate")) {
+					i = myReader.nextInt();
+					j = myReader.nextInt();
+					XORGate.createXORGate(matrix, i, j);
+				} else if (n.equals("Generator")) {
 					i = myReader.nextInt();
 					j = myReader.nextInt();
 					Generator.createGenerator(matrix, i, j);

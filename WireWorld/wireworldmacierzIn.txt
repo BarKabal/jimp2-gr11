@@ -1,4 +1,7 @@
 20 20
-Generator 2 2
-ElectronTail 2 2
-ElectronHead 2 3
+Conductor 4 4
+ElectronHead 4 3
+ElectronTail 4 2
+XORGate 5 5
+Conductor 7 8
+Conductor 7 9
