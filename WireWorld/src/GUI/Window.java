@@ -172,7 +172,7 @@ public class Window extends JFrame implements ActionListener {
 		System.out.println("Got an action");
 		switch (command) {
 		case "SAVE":
-			/*Do that*/
+			saveFileWindow(WireWorld.matrix.iteration - 1);
 			break;
 		case "LOAD":
 			loadFileWindow();
