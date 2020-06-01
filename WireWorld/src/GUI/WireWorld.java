@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import loadsavefile.LoadFile;
 import loadsavefile.SaveFile;
@@ -12,14 +12,15 @@ public class WireWorld {
 
     public static Matrix matrix;
     public static File selectedFile;
-
+    public static File outFile;
     public static void main(String[] args){
     	selectedFile = new File("wireworldmacierzIn.txt");
+    	outFile = new File("wireworldmacierzOut.txt");
         loadMatrix(selectedFile);
         makeIterations();
         Window window = new Window();
         window.run();
-        SaveFile.saveFile(Matrix.iteration - 1, matrix);
+        SaveFile.saveFile(outFile, Matrix.iteration - 1, matrix);
     }
     
     public static void loadMatrix(File file) {

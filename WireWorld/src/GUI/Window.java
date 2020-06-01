@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import javax.swing.*;
 
@@ -148,7 +148,22 @@ public class Window extends JFrame implements ActionListener {
 			WireWorld.selectedFile = fileChooser.getSelectedFile();
 			animation.changeHowManyIterations(WireWorld.selectedFile, WireWorld.matrix.iteration);
 		}
-		animation.remakeAnimation();
+	}
+	
+	public static void saveFileWindow(int n) {
+		JFrame parentFrame = new JFrame();
+		 
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Specify a file to save");   
+		 
+		int userSelection = fileChooser.showSaveDialog(parentFrame);
+		 
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+		    File fileToSave = fileChooser.getSelectedFile();
+		    SaveFile.saveFile(fileToSave, n , WireWorld.matrix);
+		    System.out.println("Save " + fileToSave.getAbsolutePath());
+		}
+		
 	}
 
 	@Override
@@ -157,7 +172,7 @@ public class Window extends JFrame implements ActionListener {
 		System.out.println("Got an action");
 		switch (command) {
 		case "SAVE":
-			/* Do That */;
+			/*Do that*/
 			break;
 		case "LOAD":
 			loadFileWindow();
@@ -169,7 +184,7 @@ public class Window extends JFrame implements ActionListener {
 			animation.PreviousImage();
 			break;
 		case "SAVE CURRENT":
-			SaveFile.saveFile(animation.currentImage, WireWorld.matrix);
+			saveFileWindow(animation.currentImage);
 			break;
 		case "SETNUMOFITER":
 			animation.changeHowManyIterations(WireWorld.selectedFile ,Integer.parseInt(numOfIterField.getText()));

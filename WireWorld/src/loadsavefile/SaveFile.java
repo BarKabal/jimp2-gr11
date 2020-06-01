@@ -11,8 +11,8 @@ import wireworldfiles.Matrix;
 
 public class SaveFile {
 	
-	public static void saveFile(int n, Matrix matrix) {
-		File myObj = new File("wireworldmacierzOut.txt");
+	public static void saveFile(File file, int n, Matrix matrix) {
+		File myObj = file;
 		try {
 			FileWriter myWriter = new FileWriter(myObj);
 			myWriter.write(matrix.rows + " " + matrix.columns);
