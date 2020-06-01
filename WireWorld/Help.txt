@@ -1,0 +1,20 @@
+How to use the program:
+
+Initial steps:
+  1. Load a desired file using the LOAD button
+  2. Enter the desired number of displayed iterations in the
+     "NUMBER OF ITERATIONS" field and press the green button
+
+Navigating the iterations:
+     To get to a specific iteration it is recommended to turn off
+     the animation by unchecking the "ANIMATION" checkbox.
+     Then you can either use the "NEXT" and "PREVIOUS" buttons
+     to navigate the iterations or enter the desired iteration into
+     the "SHOW ITERATION NUMBER" and press the green set button
+
+Saving the iterations:
+     You can either save a specific iteration or save the last
+     iteration that was calculated. To save a specific iteration,
+     the iteration must be shown on the display, and the
+     "SAVE CURRENT" button must be pressed. To save the last
+     calculated iteration, press the "SAVE" button.

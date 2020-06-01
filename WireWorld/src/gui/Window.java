@@ -3,19 +3,20 @@ package gui;
 import javax.swing.*;
 
 import loadsavefile.CreateImage;
-import loadsavefile.LoadFile;
 import loadsavefile.SaveFile;
 import wireworldfiles.Matrix;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
+import java.io.*;
+import java.util.ArrayList;
 
 public class Window extends JFrame implements ActionListener {
     Color mainBackgroundColor = new Color(255, 243, 174, 255);
+    Color setButtonColor = new Color(45, 167, 2);
     JCheckBox animationCheckbox;
     JLabel numOfIterLabel, showIterNumLabel, title, anim;
-    JButton save, load, next, previous, saveCurrent, numOfIterSet, showIterNumSet;
+    JButton save, load, next, previous, saveCurrent, numOfIterSet, showIterNumSet, whatDoIDO;
     JTextField numOfIterField, showIterNumField;
     static Animation animation;
 
@@ -51,7 +52,8 @@ public class Window extends JFrame implements ActionListener {
 
 	private void addCheckboxes() {
 		animationCheckbox = new JCheckBox("ANIMATION", true);
-		animationCheckbox.setBounds(650, 50, 20, 20);
+		animationCheckbox.setBounds(650, 90, 20, 20);
+		animationCheckbox.setBackground(mainBackgroundColor);
 		add(animationCheckbox);
 		animationCheckbox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
@@ -62,77 +64,90 @@ public class Window extends JFrame implements ActionListener {
 
 	private void addLabels() { // numOfIter, showIterNum, title, anim;
 		numOfIterLabel = new JLabel("NUMBER OF ITERATIONS");
-		numOfIterLabel.setBounds(650, 80, 200, 20);
+		numOfIterLabel.setBounds(650, 120, 200, 20);
 		add(numOfIterLabel);
+
 		showIterNumLabel = new JLabel("SHOW ITERATION NUMBER");
-		showIterNumLabel.setBounds(650, 130, 200, 20);
+		showIterNumLabel.setBounds(650, 170, 200, 20);
 		add(showIterNumLabel);
+
 		title = new JLabel("WIREWORLD");
-		title.setBounds(700, 10, 100, 20);
+		title.setBounds(650, 10, 200, 60);
+		title.setFont(new Font("Times New Roman",Font.BOLD, 30));
 		add(title);
+
 		anim = new JLabel("ANIMATION");
-		anim.setBounds(680, 50, 100, 20);
+		anim.setBounds(680, 90, 100, 20);
 		add(anim);
 	}
 
 	private void addButtons() { // save, load, next, previous, saveCurrent, numOfIterSet, showIterNumSet;
 		save = new JButton("SAVE");
-		save.setBounds(650, 180, 200, 40);
+		save.setBounds(650, 230, 200, 40);
 		save.addActionListener(this);
 		save.setActionCommand("SAVE");
 		add(save);
 
 		load = new JButton("LOAD");
-		load.setBounds(650, 300, 200, 40);
+		load.setBounds(650, 350, 200, 40);
 		load.addActionListener(this);
 		load.setActionCommand("LOAD");
 		add(load);
 
 		next = new JButton("NEXT");
-		next.setBounds(755, 360, 95, 40);
+		next.setBounds(755, 410, 95, 40);
 		next.addActionListener(this);
 		next.setActionCommand("NEXT");
 		add(next);
 
 		previous = new JButton("PREVIOUS");
-		previous.setBounds(650, 360, 95, 40);
+		previous.setBounds(650, 410, 95, 40);
 		previous.addActionListener(this);
 		previous.setActionCommand("PREVIOUS");
 		add(previous);
 
 		saveCurrent = new JButton("SAVE CURRENT");
-		saveCurrent.setBounds(650, 240, 200, 40);
+		saveCurrent.setBounds(650, 290, 200, 40);
 		saveCurrent.addActionListener(this);
 		saveCurrent.setActionCommand("SAVE CURRENT");
 		add(saveCurrent);
 
 		numOfIterSet = new JButton();
-		numOfIterSet.setBounds(820, 100, 20, 20);
+		numOfIterSet.setBounds(820, 140, 20, 20);
 		numOfIterSet.addActionListener(this);
 		numOfIterSet.setActionCommand("SETNUMOFITER");
+		numOfIterSet.setBackground(setButtonColor);
 		add(numOfIterSet);
 
 		showIterNumSet = new JButton();
-		showIterNumSet.setBounds(820, 150, 20, 20);
+		showIterNumSet.setBounds(820, 190, 20, 20);
 		showIterNumSet.addActionListener(this);
 		showIterNumSet.setActionCommand("SETSHOWITERNUM");
+		showIterNumSet.setBackground(setButtonColor);
 		add(showIterNumSet);
+
+		whatDoIDO = new JButton("WHAT DO I DO?");
+		whatDoIDO.setBounds(650, 500, 200, 40);
+		whatDoIDO.addActionListener(this);
+		whatDoIDO.setActionCommand("WHAT DO I DO?");
+		add(whatDoIDO);
 
 	}
 
 	private void addFields() { // numOfIterField, showIterNumField;
 		numOfIterField = new JTextField();
-		numOfIterField.setBounds(650, 100, 150, 20);
+		numOfIterField.setBounds(650, 140, 150, 20);
 		numOfIterField.setText(String.valueOf(Matrix.iteration));
 		add(numOfIterField);
+
 		showIterNumField = new JTextField();
-		showIterNumField.setBounds(650, 150, 150, 20);
+		showIterNumField.setBounds(650, 190, 150, 20);
 		add(showIterNumField);
 	}
 
 	private void setAnimation() {
 		animation = new Animation();
-		animation.setBounds(50, 50, 600, 600);
+		animation.setBounds(50, 90, 600, 600);
 		animation.StartAnimation(Matrix.iteration, 0, 500, this);
 	}
 
@@ -146,7 +161,7 @@ public class Window extends JFrame implements ActionListener {
 		int returnValue = fileChooser.showOpenDialog(null);
 		if (returnValue == JFileChooser.APPROVE_OPTION) {
 			WireWorld.selectedFile = fileChooser.getSelectedFile();
-			animation.changeHowManyIterations(WireWorld.selectedFile, WireWorld.matrix.iteration);
+			animation.changeHowManyIterations(WireWorld.selectedFile, Matrix.iteration);
 		}
 	}
 	
@@ -163,7 +178,36 @@ public class Window extends JFrame implements ActionListener {
 		    SaveFile.saveFile(fileToSave, n , WireWorld.matrix);
 		    System.out.println("Save " + fileToSave.getAbsolutePath());
 		}
-		
+	}
+
+	private void setHelpWindow() throws IOException {
+    	JFrame help = new JFrame();
+		help.setTitle("WireWorld - Help");
+		help.setSize(600,600);
+		help.setLayout(null);
+		help.setDefaultCloseOperation(HIDE_ON_CLOSE);
+		help.setResizable(false);
+		help.getContentPane().setBackground(mainBackgroundColor);
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
+		textArea.setBackground(mainBackgroundColor);
+		BufferedReader br = new BufferedReader(new FileReader("Help.txt"));
+		String line = br.readLine();
+		ArrayList<String> listOfStrings = new ArrayList<>();
+		listOfStrings.add(line);
+		while (line != null) {
+			line = br.readLine();
+			listOfStrings.add(line);
+		}
+		for (int i = 0; i < listOfStrings.size(); i++) {
+			textArea.append(listOfStrings.get(i));
+			textArea.append("\n");
+		}
+		help.add(textArea);
+		help.setVisible(true);
+		textArea.setBounds(50,50,500,500);
+		Font helpFont = new Font("Arial",Font.PLAIN,16);
+		textArea.setFont(helpFont);
 	}
 
 	@Override
@@ -172,7 +216,7 @@ public class Window extends JFrame implements ActionListener {
 		System.out.println("Got an action");
 		switch (command) {
 		case "SAVE":
-			saveFileWindow(WireWorld.matrix.iteration - 1);
+			saveFileWindow(Matrix.iteration - 1);
 			break;
 		case "LOAD":
 			loadFileWindow();
@@ -192,7 +236,13 @@ public class Window extends JFrame implements ActionListener {
 		case "SETSHOWITERNUM":
 			animation.goToImage(Integer.parseInt(showIterNumField.getText()));
 			break;
-
+		case "WHAT DO I DO?":
+			try {
+				setHelpWindow();
+			} catch (IOException ioException) {
+				ioException.printStackTrace();
+			}
+			break;
 		}
 	}
 }

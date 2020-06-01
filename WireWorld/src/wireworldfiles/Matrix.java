@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Matrix {
 	public int rows;
 	public int columns;
-	public static int iteration = 4;
+	public static int iteration = 7;
 
 	public ArrayList<Cell>[][] board; // Cell[rows][columns]
 
