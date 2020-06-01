@@ -7,11 +7,14 @@ import loadsavefile.CreateImage;
 import loadsavefile.LoadFile;
 import wireworldfiles.Matrix;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 public class Animation extends JPanel implements ActionListener {
 
@@ -33,12 +36,16 @@ public class Animation extends JPanel implements ActionListener {
 	}
 
 	private void ShowImage() {
-		Icon imgIcon = new ImageIcon(currentImage + ".png");
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(new File(currentImage + ".png"));
+		} catch (IOException e) {
+		}
+		Icon imgIcon = new ImageIcon(img);
 		System.out.println("Showing image" + currentImage);
 		label.setIcon(imgIcon);
 		updateUI();
 	}
-
 
 	public void goToImage(int number) {
 		if (number <= howManyImages)
@@ -56,9 +63,9 @@ public class Animation extends JPanel implements ActionListener {
 		File file = selectedFile;
 		WireWorld.matrix = LoadFile.loadMatrixSize(file);
 		WireWorld.matrix.startMatrix();
-        LoadFile.loadMatrixState(file, WireWorld.matrix);
-        Matrix.iteration = number;
-        howManyImages = number;
+		LoadFile.loadMatrixState(file, WireWorld.matrix);
+		Matrix.iteration = number;
+		howManyImages = number;
 		WireWorld.makeIterations();
 		remakeAnimation();
 	}
@@ -67,7 +74,7 @@ public class Animation extends JPanel implements ActionListener {
 		StopTimer();
 		currentImage = 0;
 		ShowImage();
-		if(isAnimationGoing)
+		if (isAnimationGoing)
 			StartTimer();
 	}
 
