@@ -1,0 +1,25 @@
+20 20
+Generator 2 8
+ElectronTail 2 8
+ElectronHead 2 9
+DiodeReversed 2 15
+DiodeReversed 2 4
+Conductor 3 2
+Conductor 4 2
+Conductor 5 2
+Conductor 6 2
+Conductor 7 2
+Conductor 8 2
+Conductor 9 2
+Diode 8 4
+Generator 8 8
+ElectronTail 8 9
+ElectronHead 8 8
+Diode 8 15
+Conductor 3 18
+Conductor 4 18
+Conductor 5 18
+Conductor 6 18
+Conductor 7 18
+Conductor 8 18
+Conductor 9 18
