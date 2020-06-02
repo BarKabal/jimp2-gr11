@@ -3,9 +3,8 @@ package gui;
 import loadsavefile.CreateImage;
 import wireworldfiles.Matrix;
 
-import loadsavefile.CreateImage;
+
 import loadsavefile.LoadFile;
-import wireworldfiles.Matrix;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

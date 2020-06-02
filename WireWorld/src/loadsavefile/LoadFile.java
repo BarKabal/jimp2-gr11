@@ -1,15 +1,8 @@
 package loadsavefile;
 
-import java.awt.FlowLayout;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 
 import wireworldfiles.Diode;
 import wireworldfiles.DiodeReversed;

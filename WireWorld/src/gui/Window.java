@@ -203,6 +203,7 @@ public class Window extends JFrame implements ActionListener {
 			textArea.append(listOfStrings.get(i));
 			textArea.append("\n");
 		}
+		br.close();
 		help.add(textArea);
 		help.setVisible(true);
 		textArea.setBounds(50,50,500,500);

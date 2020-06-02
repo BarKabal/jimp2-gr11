@@ -17,12 +17,6 @@ public class Matrix {
 	}
 
 
-	public Matrix(int rows, int columns, ArrayList<Cell>[][] board) {
-		this.rows = rows;
-		this.columns = columns;
-		this.board = board;
-	}
-
 	public void printMatrix(int n) {
 
 		System.out.println((n + 1) + ". Iteracja:");
