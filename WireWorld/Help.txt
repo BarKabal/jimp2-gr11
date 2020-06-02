@@ -26,14 +26,11 @@ File format:
     TypeOfElement2 [rows] [columns]
     Where rows and columns must be natural numbers from the range <1, 600>
     TypeOfElement must be a word from the list:
-    -Conductor
-    -ElectronHead
-    -ElectronTail
-    -Diode
-    -DiodeReversed
-    -XORGate
-    -Generator
-    -ORGate
-    IMPORTANT: Bare in mind the size of each element, if you put an element that doesn't fit onto the board
-    the file won't load.
-    IMPORTANT: If the file doesn't load, please check if you didn't leave empty line in the end of the file.
+    -Conductor                          -ElectronHead
+    -ElectronTail                       -Diode
+    -DiodeReversed                -XORGate
+    -Generator                          -ORGate
+    IMPORTANT: Bare in mind the size of each element, if you put
+               an element that doesn't fit onto the board the file won't load.
+    IMPORTANT: If the file doesn't load, please check if you didn't
+               leave an empty line in the end of the file.

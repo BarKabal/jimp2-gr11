@@ -183,7 +183,7 @@ public class Window extends JFrame implements ActionListener {
 	private void setHelpWindow() throws IOException {
     	JFrame help = new JFrame();
 		help.setTitle("WireWorld - Help");
-		help.setSize(600,600);
+		help.setSize(630,800);
 		help.setLayout(null);
 		help.setDefaultCloseOperation(HIDE_ON_CLOSE);
 		help.setResizable(false);
@@ -206,7 +206,7 @@ public class Window extends JFrame implements ActionListener {
 		br.close();
 		help.add(textArea);
 		help.setVisible(true);
-		textArea.setBounds(50,50,500,500);
+		textArea.setBounds(30,30,540,700);
 		Font helpFont = new Font("Arial",Font.PLAIN,16);
 		textArea.setFont(helpFont);
 	}
