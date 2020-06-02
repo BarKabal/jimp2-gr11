@@ -8,6 +8,7 @@ import wireworldfiles.Diode;
 import wireworldfiles.DiodeReversed;
 import wireworldfiles.Generator;
 import wireworldfiles.Matrix;
+import wireworldfiles.ORGate;
 import wireworldfiles.XORGate;
 
 public class SaveFile {
@@ -23,21 +24,27 @@ public class SaveFile {
 				for (int j = 0; j < matrix.columns; j++) {
 					if (matrix.board[i][j].get(n).alreadyInFile == false
 							&& matrix.board[i][j].get(n).isActive == true) {
+						
 						if ((i + 4 < matrix.rows) && (j + 2 < matrix.columns) && (j - 1 > 0)
 								&& XORGate.checkXORGate(matrix, i, j, n) == true) {
 							myWriter.write("\n" + "XORGate" + " " + i + " " + j);
 							XORGate.saveAsXORGate(matrix, i, j, n);
 						
+						} else if ((i + 4 < matrix.rows) && (j + 3 < matrix.columns)
+								&& ORGate.checkORGate(matrix, i, j, n) == true) {
+							myWriter.write("\n" + "ORGate" + " " + i + " " + j);
+							ORGate.saveAsORGate(matrix, i, j, n);
+
 						} else if ((i + 2 < matrix.rows) && (j + 5 < matrix.columns) && (j - 1 > 0)
 								&& Generator.checkGenerator(matrix, i, j, n) == true) {
 							myWriter.write("\n" + "Generator" + " " + i + " " + j);
 							Generator.saveAsGenerator(matrix, i, j, n);
-							
+
 						} else if ((i + 2 < matrix.rows) && (j + 1 < matrix.columns && (j - 1 > 0))
 								&& Diode.checkDiode(matrix, i, j, n) == true) {
 							myWriter.write("\n" + "Diode" + " " + i + " " + j);
 							Diode.saveAsDiode(matrix, i, j, n);
-							
+
 						} else if ((i + 2 < matrix.rows) && (j + 1 < matrix.columns && (j - 1 > 0))
 								&& DiodeReversed.checkDiodeReversed(matrix, i, j, n) == true) {
 							myWriter.write("\n" + "DiodeReversed" + " " + i + " " + j);
